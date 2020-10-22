@@ -40,3 +40,6 @@ sudo apt update && sudo apt upgrade
 - OS: Ubuntu 20.04
 - DE: Gnome
 - Graphic: AMD
+
+# License
+http://www.wtfpl.net/txt/copying/
