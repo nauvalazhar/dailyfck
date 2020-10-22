@@ -38,4 +38,5 @@ sudo apt update && sudo apt upgrade
 
 ### System Summary
 - OS: Ubuntu 20.04
+- DE: Gnome
 - Graphic: AMD
