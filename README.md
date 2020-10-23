@@ -54,6 +54,7 @@ Setelah ditelusuri ternyata ini masalah compression brotli yang bikin response j
 ### Solution
 Disable brotli for better life.
 ```
+// /config/middleware.js
 module.exports = {
     gzip: {
       enabled: true,
@@ -71,6 +72,11 @@ module.exports = {
 - Strapi version: 3.1.2
 - Database: MySQL
 - Operating system: Ubuntu 16.04
+
+### Reference
+- https://github.com/strapi/strapi/issues/8375
+- https://strapi.io/documentation/v3.x/concepts/middlewares.html#core-middleware-configurations
+- https://strapi.io/documentation/v3.x/deployment/heroku.html#gzip
 
 # License
 http://www.wtfpl.net/txt/copying/
