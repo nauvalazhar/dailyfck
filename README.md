@@ -41,5 +41,36 @@ sudo apt update && sudo apt upgrade
 - DE: Gnome
 - Graphic: AMD
 
+-----
+
+## Strapi Admin UI takes 1.6 minutes to load, but REST is so fast
+
+Ini masalah di Strapi. Saya lagi bikin app yang adminnya pake CMS Strapi. Sudah 1 tahun terakhir pake Strapi dan gak ada masalah ini, masalahnya itu halaman admin Strapi lambat banget di-load, bahkan sampe 1.6 menit. Gw kira ini cuma initial load aja (w/o cache) tapi ternyata pas berikutnya juga sama lambatnya. Berarti ada yang gak beres. Beruntungnya, API-nya cepet banget (ya bisa gw bilang normal lah). 
+
+Gw awlanya gak curiga sih ini lambat, karena gw pikir emang bundle Strapi ini gede banget, dan ditambah masih di dev env. Dan gw coba build buat prod, tetap aja hasilnya lambat. Berarti emang ada yang salah sih di Strapi nya. Coba cari solus di GitHub issue, nggak ada solusi yang clear, atau bahkan nggak ada masalah yang bener2 serupa. Ya udah gw open [new issue](https://github.com/strapi/strapi/issues/8375) dan ternyata ada beberapa orang punya masalah yang sama, bahkan server mereka lebih bagus dari pada punya gw.
+
+Setelah ditelusuri ternyata ini masalah compression brotli yang bikin response jadi slow-down, dan compression ini enabled by default.
+
+### Solution
+Disable brotli for better life.
+```
+module.exports = {
+    gzip: {
+      enabled: true,
+      options: {
+        br: false
+      }
+    }
+  },
+};
+```
+
+### System Summary
+- Node.js version: v10.16.0
+- NPM version:6.9.0
+- Strapi version: 3.1.2
+- Database: MySQL
+- Operating system: Ubuntu 16.04
+
 # License
 http://www.wtfpl.net/txt/copying/
