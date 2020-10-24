@@ -78,5 +78,17 @@ module.exports = {
 - https://strapi.io/documentation/v3.x/concepts/middlewares.html#core-middleware-configurations
 - https://strapi.io/documentation/v3.x/deployment/heroku.html#gzip
 
+## OBS won't launch on Ubuntu
+
+Ok, jadi sebenernya app ini bisa jalan sebelumnya, nah entah kenapa pas gw buka lagi di masa depan gak bisa. Kayaknya sih gw ada nambahin beberapa konfigurasi, tapi gw lupa apa konfigurasinya. Nah, gw cari masalahnya dan ternyata gak ada yang sama. Yaudah gw mikir solve sendiri, gw coba remove package, gak bisa; gw coba, purge, gak bisa juga. Yaudah gw coba cek log, dan ada beberapa yang error, dan gw gak ngerti ini error nya relevan apa nggak. Yaudah lah gw coba hapus konfigurasi aja. Hasilnya bisa, OBS gw kebuka lagi.
+
+### Solution
+Remove OBS studio configuration at `~/.config/obs-studio` with `rm -rf ~/.config/obs-studio`.
+
+### System Summary
+
+- OS: Ubuntu 20.04
+- OBS Version: 26.0.2
+
 # License
 http://www.wtfpl.net/txt/copying/
