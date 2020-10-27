@@ -90,5 +90,15 @@ Remove OBS studio configuration at `~/.config/obs-studio` with `rm -rf ~/.config
 - OS: Ubuntu 20.04
 - OBS Version: 26.0.2
 
+## Firefox Ctrl+Mousewheel (Zoom in/out) too slow
+Ini lambat banget sih, gw kira masalah di Ubuntu, ternyata di Firefox. Karena di Google Chrome melakukan zoom in/out di Figma pake mousewheel itu cepet bener. Sedangkan di Firefox lambatnya bukan main. 
+
+### Solution
+Open `about:config`. Find the `mousewheel.with_control.delta_multiplier_y` configuration. In my case, change the value from 100 to 1000. And that's it!
+
+### System Summary
+- OS: Ubuntu 20.04
+- Firefox Version: 82.0 (64-bit)
+
 # License
 http://www.wtfpl.net/txt/copying/
