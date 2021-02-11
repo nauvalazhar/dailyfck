@@ -100,5 +100,31 @@ Open `about:config`. Find the `mousewheel.with_control.delta_multiplier_y` confi
 - OS: Ubuntu 20.04
 - Firefox Version: 82.0 (64-bit)
 
+## Bluetooth not detecting any devices on Ubuntu
+
+Gw baru beli headphone bluetooth, di hape gw sih oke2 aja. Tapi, pas coba di pc ubuntu saya malah ga mau detect sama sekali. Pas gw cek ternyata emang driver ubuntu-nya ga detect device apapun bukan cuma headphone gw aja. Ternyata di firmware brcm nya missing, jadi harus download manual.
+
+### Solution
+Download file brcm yang missing di Ubuntu lo. Cek aja pake:
+```
+dmesg | grep -i 'blue' 
+```
+There if you find `Bluetooth: hci0: BCM: patch brcm/BCM43142A0-0a5c-216c.hcd not found` berarti lo punya masalah kek gw.
+Download file yang katanya missing di sini: https://github.com/winterheart/broadcom-bt-firmware/tree/master/brcm
+
+Terus salin file yang di download tadi:
+```
+sudo cp  BCM43142A0-0a5c-21d7.hcd /lib/firmware/brcm/BCM43142A0-0a5c-21d7.hcd
+
+sudo modprobe -r btusb
+
+sudo modprobe btusb
+```
+
+Coba restart pc lo terus tes scan devices lagi. Harusnya sih udah bisa.
+
+### System Summary
+- OS: Ubuntu 20.04
+
 # License
 http://www.wtfpl.net/txt/copying/
