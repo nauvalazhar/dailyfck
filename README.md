@@ -126,5 +126,55 @@ Coba restart pc lo terus tes scan devices lagi. Harusnya sih udah bisa.
 ### System Summary
 - OS: Ubuntu 20.04
 
+## Static Electricity Flickering
+Ok, ini terjadi pada pc gw. Situasinya ketika masuk login screen OS Windows. Saat di Bios dan Grub sih ok ok aja, ketika masuk ke login screen Windows mulailah layar monitor gw dah kayak tv yang antenanya ccd. Masalah diperparah ketika gw buka gambar atau window yang ada warna hitamnya, di bagian hitam doang itu flickering muncul, di bagian lain apalagi putih ga muncul sama sekali.
+
+### Solution
+Gw gak tau sih sebenernya ini kenapa, cuma gw curiga ini masalah driver aja, kalo masalah dari vga card harusnya dari awal gw nyalain nih pc udah flickering. Tapi bisa aja sih, gw gak begitu ahli dalam hal ini. Jadi yang gw lakuin di sini reinstall semua driver yang ada hubungannya dengan grafis lewat safe mode, mulai dari Intel HD Graphic, sampe yang Radeon gw uninstall dan delete driver-nya. Abis itu restart pc, ketika masuk windows dia bakal punya display yang aneh dah, karena pake basic display driver.
+
+Di sini, gw download software buat detect driver amd yang cocok buat pc gw, abis itu gw install, detect dan mulai download. Abis itu dia minta restart, ketika restart hasilnya sama aja, masih muncul flickering. Gw coba2 setting di app radeon-nya, gw coba pilih2 bagian color dan segala macem, gw switch dari ycbcr ke rgb. Lumayan tuh hasilnya ga begitu parah, tapi masih tetep ada. Ya udah gw diemin tinggal tidur tanpa gw matiin, paginya window minta update, ya udah gw update and restart, pas udah selesai dia reboot sendiri, ketika masuk windows dah ilang. Ajaib bener.
+
+### System Summary
+- OS: Windows 10
+
+## Windows Warm Color Issue
+Gw kira ini masih ada hubungannya sama issue di atas, ternyata ini berbeda. Jadi pas masuk login screen warna display nya normal2 aja. Ketika dah berhasil login juga masih aman, cuma pada saat beberapa waktu kemudian, warna display gw kayak warm gitu, agak merah atau orange lah. Gw kira ini cuma masalah di monitor, tinggal atur saturation atau semacamnya lah. Ternyata nggak, dan ini cuma soal fitur night light di windows 10, jadi kalo fitur ini diaktifin, ketika masuk jam jam malam, dia bakal merubah warna display jadi agak anget atau warm.
+
+### Solution
+Karena ini sebenernya lebih ke preferensi aja sih, bukan masalah. Buat matiin fitur ini, masuk ke display settings, terus disable Night Light fitur. Selesai.
+
+### System Summary
+- OS: Windows 10
+
+## Git: error setting certificate verify locations
+Ini terjadi ketika gw mau clone remote repo ke local. Dan ini gw tau masalah SSL certificate aja, tapi gw gak tau cara config nya gimana.
+Error-nya gini:
+```bash
+Cloning into 'repo'...
+fatal: unable to access 'https://gitlab.com/username/repo.git/': error setting certificate verify locations:
+  CAfile: Wrong/path/to/ssl/certs/ca-bundle.crt
+  CApath: none
+```
+
+### Solution
+Ini tinggal ngasih tau aja ke git path certificate yang bener itu di mana, lo bisa ngatur per repo atau global config.
+
+Config per repo:
+```bash
+git config http.sslCAinfo "/path/to/ssl/certs/ca-bundle.crt"
+```
+
+Global config:
+```bash
+git config --global http.sslCAinfo "/path/to/ssl/certs/ca-bundle.crt"
+```
+
+Nyari path certificate kalo di windows itu adanya di folder instalasi git, terus di: `mingw64/ssl/certs/ca-bundle.crt`. Kalo di OS lain gw gak tau cari aja sendiri.
+
+### System Summary
+- OS: Windows 10
+- Git: 2.28.0.windows.1
+- Git Host: Gitlab
+
 # License
 http://www.wtfpl.net/txt/copying/
